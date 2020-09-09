@@ -120,20 +120,21 @@
                                   <!-- [menu ] end -->
 
                                     <!-- [ menu ] start -->
-                                    @if(auth()->user()->role != 0) 
+                                   
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="fa fa-user"></i></span>
                                             <span class="pcoded-mtext">User Management</span>
                                         </a>
                                         <ul class="pcoded-submenu">
-                                       
+                                        @if(auth()->user()->role != 0) 
                                             <li class="">
                                                 <a href="/user#!" class="waves-effect waves-dark">
                                                       <span class="pcoded-mtext">Admin Users</span>
                                                       <!-- <span class="pcoded-badge label label-warning">{{$data[7]}}</span> -->
                                                   </a>
                                             </li>
+                                            @endif
                                             <li class="">
                                                 <a href="/appUser#!" class="waves-effect waves-dark">
                                                       <span class="pcoded-mtext">App Users</span>
@@ -143,7 +144,7 @@
                                         </ul>
                                     </li>
                                     <!-- [menu ] end -->
-
+                                    @if(auth()->user()->role != 0) 
                                     <!-- [ menu ] start -->
                                     <li class="pcoded-hasmenu">
                                         <a href="/settings#!" class="nav-link">

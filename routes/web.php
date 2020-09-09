@@ -27,7 +27,6 @@ Auth::routes();
 Route::middleware(['admin'])->group(function() {
     
     Route::resource('/user', 'AdminUsersController');
-    Route::resource('/appUser', 'AppUsersController');
     
     Route::get('/settings', 'SettingController@index')->name('settings.index');
     Route::post('/settings', 'SettingController@store')->name('settings.store');
@@ -45,6 +44,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::resource('/appUser', 'AppUsersController');
 
     Route::get('/timeIn', 'AttendanceController@time_in');
     Route::get('/timeOut', 'AttendanceController@time_out');

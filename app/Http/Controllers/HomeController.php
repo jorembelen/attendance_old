@@ -29,8 +29,9 @@ class HomeController extends Controller
      */
     public function index()
         {
-                $greetings = "";
-                // date_default_timezone_set('Asia/Kuwait');
+            $greetings = "";
+            date_default_timezone_set('Asia/Riyadh');
+            
             /* This sets the $time variable to the current hour in the 24 hour clock format */
             $time = date("H");
 
@@ -54,7 +55,7 @@ class HomeController extends Controller
 
             /* Finally, show good night if the time is greater than or equal to 1900 hours */
             if ($time >= "19") {
-                $greetings = "Good night";
+                $greetings = "Good Night!";
         }
 
                     $totalEmp =  count(Employee::all());
@@ -74,6 +75,7 @@ class HomeController extends Controller
 
                         $data = [$totalEmp, $ontimeEmp, $latetimeEmp, $percentageOntime, $AllAttendance, $totalPos, $totalDep, $totalAdm, $totalApp];
 
+                        // dd($time);
                         return view('admin.dashboard')
                         ->with('data', $data)
                         ->with('greetings', $greetings);

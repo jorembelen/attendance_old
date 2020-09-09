@@ -78,14 +78,15 @@ class EmployeesController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'department' => 'required',
-            'position' => 'required',
-            'checkIn_time' => 'required',
-            'checkOut_time' => 'required'
+            'department' => 'required|exists:departments,dep_name',
+            'position' => 'required|exists:positions,pos_name',
+            'checkIn_time' => 'required|exists:check_ins,checkIn_time',
+            'checkOut_time' => 'required|exists:check_outs,checkOut_time',
         ]);
 
         if ($validator->fails()) {
-            return back()->with('errors', $validator->messages()->all()[0])->withInput();
+            Alert::error('Error', 'Sorry, there\'s a problem while adding Employee.');
+            return redirect('/employees#!')->withErrors($validator);
         }
 
         $employee = new Employee;
@@ -136,14 +137,15 @@ class EmployeesController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'department' => 'required',
-            'position' => 'required',
-            'checkIn_time' => 'required',
-            'checkOut_time' => 'required'
+            'department' => 'required|exists:departments,dep_name',
+            'position' => 'required|exists:positions,pos_name',
+            'checkIn_time' => 'required|exists:check_ins,checkIn_time',
+            'checkOut_time' => 'required|exists:check_outs,checkOut_time',
         ]);
 
         if ($validator->fails()) {
-            return back()->with('errors', $validator->messages()->all()[0])->withInput();
+            Alert::error('Error', 'Sorry, there\'s a problem while updating Employee.');
+            return redirect('/employees#!')->withErrors($validator);
         }
 
         $employee->update($request->all());
